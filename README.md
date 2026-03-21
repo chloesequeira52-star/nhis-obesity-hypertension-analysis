@@ -31,5 +31,14 @@ To determine whether obesity is associated with increased odds of hypertension i
 - `analysis.sas` → main SAS code
 - `README.md` → project documentation
 
+## 📊 Key Results
+
+| Variable | Odds Ratio | 95% CI |
+|----------|-----------|--------|
+| Obese | 2.20 | 1.61–3.01 |
+| Age | 1.06 | 1.05–1.07 |
+| Male | 1.55 | 1.16–2.07 |
+| White | 1.19 | 0.85–1.68 |
+
 
 
