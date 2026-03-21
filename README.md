@@ -31,6 +31,5 @@ To determine whether obesity is associated with increased odds of hypertension i
 - `analysis.sas` → main SAS code
 - `README.md` → project documentation
 
-## 🔗 Author
-Chloe Sequeira
+
 MPH Candidate, Epidemiology – Columbia University
