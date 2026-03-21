@@ -32,4 +32,4 @@ To determine whether obesity is associated with increased odds of hypertension i
 - `README.md` → project documentation
 
 
-MPH Candidate, Epidemiology – Columbia University
+
