@@ -1,31 +1,24 @@
-/* STEP 1: Import ONLY first 1000 rows for faster testing */
+/* STEP 1: Import full NHIS dataset */
 
 proc import datafile="/home/u64136090/sasuser.v94/adult24.csv"
     out=work.proj3_raw_full
     dbms=csv
     replace;
-    guessingrows=1000;
+    guessingrows=max;
 run;
 
-/* Create a smaller dataset (first 1000 rows) */
-data work.proj3_raw;
+/* OPTIONAL: smaller test dataset for quick debugging */
+data work.proj3_raw_test;
     set work.proj3_raw_full (obs=1000);
 run;
 
-/* Check first 20 rows */
-proc print data=work.proj3_raw (obs=20);
-run;
-
-/* View variable names */
-proc contents data=work.proj3_raw varnum;
-run;
-proc freq data=work.proj3_raw;
-    tables HYPEV_A BMICAT_A SEX_A RACEALLP_A;
+/* Check variable names */
+proc contents data=work.proj3_raw_full varnum;
 run;
 /* STEP 3: Create clean analytic dataset */
 
 data work.proj3_clean;
-    set work.proj3_raw;
+    set work.proj3_raw_full;
 
     /* Outcome: Hypertension */
     if HYPEV_A = 1 then hypertension = 1;
@@ -40,6 +33,7 @@ data work.proj3_clean;
     /* Sex */
     if SEX_A = 1 then male = 1;
     else if SEX_A = 2 then male = 0;
+    else male = .;
 
     /* Race: White vs Non-White */
     if RACEALLP_A = 1 then white = 1;
@@ -49,30 +43,94 @@ data work.proj3_clean;
     /* Age */
     age = AGEP_A;
 
-    /* Keep only complete cases */
-    if hypertension ne . and obese ne . and male ne . and white ne . and age ne .;
+    /* Keep survey design variables */
+    weight = WTFA_A;
+    strata = PSTRAT;
+    cluster = PPSU;
 
+    /* Keep only complete cases */
+    if hypertension ne . and obese ne . and male ne . and white ne . and age ne . 
+       and weight ne . and strata ne . and cluster ne .;
 run;
-proc freq data=work.proj3_clean;
+proc surveyfreq data=work.proj3_clean;
+    strata strata;
+    cluster cluster;
+    weight weight;
     tables hypertension obese male white;
 run;
 
-proc means data=work.proj3_clean;
+proc surveymeans data=work.proj3_clean mean stderr;
+    strata strata;
+    cluster cluster;
+    weight weight;
     var age;
 run;
-/* STEP 4: Logistic Regression */
+/* STEP 4: Survey-weighted logistic regression */
 
-proc logistic data=work.proj3_clean descending;
-    class male (ref='0') white (ref='1') / param=ref;
+proc surveylogistic data=work.proj3_clean;
+    strata strata;
+    cluster cluster;
+    weight weight;
 
-    model hypertension = obese age male white;
+    class obese (ref='0')
+          male  (ref='0')
+          white (ref='1') / param=ref;
 
+    model hypertension(event='1') = obese age male white;
 run;
-/* STEP 5: Add interaction (obesity * sex) */
+/* STEP 5: Test interaction between obesity and sex */
 
-proc logistic data=work.proj3_clean descending;
-    class male (ref='0') white (ref='1') / param=ref;
+proc surveylogistic data=work.proj3_clean;
+    strata strata;
+    cluster cluster;
+    weight weight;
 
-    model hypertension = obese age male white obese*male;
+    class obese (ref='0')
+          male  (ref='0')
+          white (ref='1') / param=ref;
+
+    model hypertension(event='1') = obese age male white obese*male;
+run;
+
+/* Stratified model: females only */
+proc surveylogistic data=work.proj3_clean;
+    where male = 0;
+    strata strata;
+    cluster cluster;
+    weight weight;
+
+    class obese (ref='0')
+          white (ref='1') / param=ref;
+
+    model hypertension(event='1') = obese age white;
+run;
+
+/* Stratified model: males only */
+proc surveylogistic data=work.proj3_clean;
+    where male = 1;
+    strata strata;
+    cluster cluster;
+    weight weight;
+
+    class obese (ref='0')
+          white (ref='1') / param=ref;
+
+    model hypertension(event='1') = obese age white;
+run;
+
+/* STEP 6: Sensitivity analysis using Poisson regression with robust variance */
+
+proc genmod data=work.proj3_clean descending;
+
+    class obese (ref='0') 
+          male (ref='0') 
+          white (ref='1')
+          cluster;
+
+    model hypertension = obese age male white / dist=poisson link=log;
+
+    repeated subject=cluster / type=ind;
+
+    weight weight;
 
 run;
