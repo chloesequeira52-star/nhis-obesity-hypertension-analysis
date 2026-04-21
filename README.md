@@ -1,44 +1,223 @@
-# Association Between Obesity and Hypertension (NHIS 2024)
+# NHIS 2024 Analysis: Obesity and Hypertension
 
-## 📌 Overview
-This project examines the association between obesity and hypertension using NHIS 2024 data. A multivariable logistic regression model was used to assess this relationship while adjusting for demographic factors.
+## 📊 Overview
 
-## 🎯 Objective
-To determine whether obesity is associated with increased odds of hypertension in U.S. adults.
+This project analyzes the association between obesity and hypertension using data from the 2024 National Health Interview Survey (NHIS). The analysis applies survey-weighted methods to generate nationally representative estimates and incorporates multiple modeling approaches to ensure robust and interpretable findings.
 
-## 📊 Methods
-- Dataset: NHIS 2024
-- Software: SAS
-- Analysis:
-  - Data cleaning and recoding
-  - Logistic regression modeling
-  - Adjustment for age, sex, and race
-  - Interaction testing (obesity × sex)
+---
 
-## 📈 Results
-- Obesity was associated with **2.20 times higher odds** of hypertension (95% CI: 1.61–3.01)
-- Age and sex were significant predictors
-- No significant interaction by sex was observed
+## 🎯 Research Question
 
-## 🧠 Key Skills Demonstrated
-- Logistic regression (SAS)
-- Epidemiologic methods
-- Data cleaning and recoding
-- Effect modification analysis
-- Interpretation of statistical results
+Is obesity associated with higher prevalence of hypertension among U.S. adults?
 
-## 📂 Files
-- `analysis.sas` → main SAS code
-- `README.md` → project documentation
+---
 
-## 📊 Key Results
+## 🧠 Data Source
 
-| Variable | Odds Ratio | 95% CI |
-|----------|-----------|--------|
-| Obese | 2.20 | 1.61–3.01 |
-| Age | 1.06 | 1.05–1.07 |
-| Male | 1.55 | 1.16–2.07 |
-| White | 1.19 | 0.85–1.68 |
+* National Health Interview Survey (NHIS) 2024
+* Cross-sectional, nationally representative dataset
+* Sample size: 31,957 adults
+* Survey design features:
+
+  * Sampling weights (`WTFA_A`)
+  * Strata (`PSTRAT`)
+  * Clusters / PSU (`PPSU`)
+
+---
+
+## ⚙️ Methods
+
+### Data Preparation
+
+* Outcome: Hypertension (self-reported diagnosis)
+* Exposure: Obesity (BMI category)
+* Covariates:
+
+  * Age (continuous)
+  * Sex (male vs female)
+  * Race (White vs Non-White)
+
+---
+
+### Statistical Analysis
+
+#### 1. Descriptive Analysis
+
+* Survey-weighted prevalence estimates using `PROC SURVEYFREQ`
+* Weighted means using `PROC SURVEYMEANS`
+
+#### 2. Main Model
+
+* Survey-weighted logistic regression (`PROC SURVEYLOGISTIC`)
+* Adjusted for age, sex, and race
+* Accounted for NHIS complex survey design (weights, strata, PSU)
+
+#### 3. Effect Modification
+
+* Tested interaction between obesity and sex
+* Conducted stratified analyses by sex
+
+#### 4. Sensitivity Analysis
+
+* Poisson regression with robust variance (`PROC GENMOD`)
+* Estimated prevalence ratios (PR) to compare with odds ratios (OR)
+
+---
+
+## 📈 Key Findings
+
+* **Hypertension prevalence:** 31.9% (weighted)
+* **Obesity prevalence:** 33.4% (weighted)
+
+### Main Results (Adjusted Model)
+
+* Obesity was associated with higher odds of prevalent hypertension
+
+  * OR: **2.67** (95% CI: 2.50–2.85)
+* Age was a strong predictor
+
+  * OR per year: **1.068**
+* Males had higher odds compared to females
+
+  * OR: **1.38**
+* Non-White individuals had higher odds compared to White individuals
+
+  * OR: **1.30**
+
+### Effect Modification
+
+* No significant interaction between obesity and sex (p = 0.35)
+* Stratified analyses showed similar effect sizes across males and females
+
+### Sensitivity Analysis
+
+* Poisson regression produced a lower estimate:
+
+  * PR ≈ **1.71**
+* This demonstrates that odds ratios may overestimate associations when outcomes are common
+
+---
+
+## ⚠️ Interpretation
+
+* Findings reflect **associations with prevalent hypertension**, not causal effects
+* The cross-sectional design limits conclusions about temporality
+* Given the high prevalence of hypertension (~32%), odds ratios should be interpreted cautiously
+
+---
+
+## ⚠️ Limitations
+
+* Cross-sectional data → cannot infer causality
+* Self-reported measures may introduce misclassification
+* Race categorized as White vs Non-White may mask heterogeneity
+* Logistic regression may overestimate effect size for common outcomes
+
+---
+
+## 🔄 Updates Based on Feedback
+
+This project was refined to improve methodological rigor and interpretation:
+
+* Implemented survey-weighted models using `PROC SURVEYLOGISTIC`
+* Accounted for NHIS complex sampling design (weights, strata, PSU)
+* Reframed findings to focus on prevalence rather than risk
+* Tested effect modification (obesity × sex)
+* Conducted Poisson regression sensitivity analysis to estimate prevalence ratios
+
+---
+
+## 🛠️ Tools Used
+
+* SAS (PROC SURVEYLOGISTIC, PROC SURVEYFREQ, PROC GENMOD)
+* Epidemiologic methods for cross-sectional analysis
+* Survey data analysis techniques
+
+---
+
+## 🚀 Key Takeaways
+
+* Demonstrates ability to work with **nationally representative health data**
+* Applies **advanced survey-weighted statistical methods**
+* Incorporates **effect modification and sensitivity analyses**
+* Shows **iterative improvement based on methodological feedback**
+
+---
+
+## 📁 Repository Structure
+
+/code
+
+* proj3_original_logistic.sas
+* proj3_final_survey_analysis.sas
+
+/output
+
+## 📊 Output
+
+### Population Characteristics (Weighted)
+
+* **Hypertension prevalence:** 31.9%
+* **Obesity prevalence:** 33.4%
+* **Male:** 49.1%
+* **Non-White:** 29.1%
+* **Mean age:** 48.3 years (SE: 0.16)
+
+---
+
+### Main Model: Survey-Weighted Logistic Regression
+
+Adjusted for age, sex, and race:
+
+* **Obesity:** OR = 2.67 (95% CI: 2.50–2.85)
+* **Age:** OR = 1.068 per year (95% CI: 1.066–1.070)
+* **Male:** OR = 1.38 (95% CI: 1.29–1.48)
+* **Non-White:** OR = 1.30 (95% CI: 1.20–1.41)
+
+Model performance:
+
+* **c-statistic = 0.787** (good discrimination)
+
+---
+
+### Effect Modification (Obesity × Sex)
+
+* Interaction term not statistically significant (p = 0.35) 
+* Suggests the association between obesity and hypertension does not differ meaningfully by sex
+
+---
+
+### Stratified Analysis
+
+**Females:**
+
+* Obesity OR = 2.56 (95% CI: 2.33–2.83)
+
+**Males:**
+
+* Obesity OR = 2.74 (95% CI: 2.50–3.01)
+
+→ Results are consistent across groups
+
+---
+
+### Sensitivity Analysis (Poisson Regression)
+
+Using robust variance estimation:
+
+* **Obesity:** PR ≈ 1.71
+* **Age:** PR ≈ 1.04 per year
+* **Male:** PR ≈ 1.19
+* **Non-White:** PR ≈ 1.16
+
+---
+
+### Key Insight
+
+The Poisson model produced lower estimates than logistic regression (PR ≈ 1.71 vs OR ≈ 2.67), demonstrating that **odds ratios can overestimate associations when outcomes are common**, as is the case with hypertension (~32% prevalence).
 
 
+README.md
+
+---
 
