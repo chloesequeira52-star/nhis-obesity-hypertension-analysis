@@ -217,6 +217,9 @@ Using robust variance estimation:
 The Poisson model produced lower estimates than logistic regression (PR ≈ 1.71 vs OR ≈ 2.67), demonstrating that **odds ratios can overestimate associations when outcomes are common**, as is the case with hypertension (~32% prevalence).
 
 
+<img width="1536" height="1024" alt="3094d465-9a13-4547-a0c4-8d5d3c190087" src="https://github.com/user-attachments/assets/ffc4fc5e-aafc-4b0d-ab8d-49530debc3d8" />
+
+
 README.md
 
 ---
