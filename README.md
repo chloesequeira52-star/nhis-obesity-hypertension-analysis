@@ -2,7 +2,7 @@
 
 ## 📊 Overview
 
-This project analyzes the association between obesity and hypertension using data from the 2024 National Health Interview Survey (NHIS). The analysis applies survey-weighted methods to generate nationally representative estimates and incorporates multiple modeling approaches to ensure robust and interpretable findings.
+This project analyzes the association between obesity and hypertension using NHIS 2024 data, applying survey-weighted methods to generate nationally representative estimates.
 
 ---
 
@@ -62,16 +62,19 @@ Is obesity associated with higher prevalence of hypertension among U.S. adults?
 * Poisson regression with robust variance (`PROC GENMOD`)
 * Estimated prevalence ratios (PR) to compare with odds ratios (OR)
 
+All analyses accounte for the complex survey design of NHIS using sampling weights, strata, and primary sampling units.
+
 ---
 
 ## 📈 Key Findings
 
 * **Hypertension prevalence:** 31.9% (weighted)
 * **Obesity prevalence:** 33.4% (weighted)
+* Hypertension was a common outcome in this population (~32%), supporting the use of prevalence-based interpretation
 
 ### Main Results (Adjusted Model)
 
-* Obesity was associated with higher odds of prevalent hypertension
+* Obesity was associated with higher prevalence of hypertension
 
   * OR: **2.67** (95% CI: 2.50–2.85)
 * Age was a strong predictor
@@ -219,7 +222,7 @@ The Poisson model produced lower estimates than logistic regression (PR ≈ 1.71
 
 <img width="1536" height="1024" alt="3094d465-9a13-4547-a0c4-8d5d3c190087" src="https://github.com/user-attachments/assets/ffc4fc5e-aafc-4b0d-ab8d-49530debc3d8" />
 
-### Visual Summary
+### Visual Summary: OR vs. PR Comparison
 
 | Measure | Obesity Estimate |
 |---|---:|
@@ -228,6 +231,8 @@ The Poisson model produced lower estimates than logistic regression (PR ≈ 1.71
 
 This comparison shows that when the outcome is common, odds ratios can overstate the magnitude of association relative to prevalence ratios.
 
+
+This project demonstrates the application of epidemiologic methods to real-world data, including survey-weighted analysis, effect modification assessment, and sensitivity modeling.
 
 ---
 
