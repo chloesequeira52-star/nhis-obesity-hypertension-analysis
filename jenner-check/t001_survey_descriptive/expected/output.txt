@@ -1,0 +1,50 @@
+
+                        The SURVEYFREQ Procedure
+
+  Table of hypertension
+
+hypertension      Frequency      Wgt Freq     Percent
+-----------------------------------------------------
+0.0                      69     104496.00       77.27
+1.0                      21      30734.00       22.73
+Total                    90     135230.00      100.00
+-----------------------------------------------------
+  Table of obese
+
+obese             Frequency      Wgt Freq     Percent
+-----------------------------------------------------
+0.0                      53      80820.00       59.76
+1.0                      37      54410.00       40.24
+Total                    90     135230.00      100.00
+-----------------------------------------------------
+  Table of male
+
+male              Frequency      Wgt Freq     Percent
+-----------------------------------------------------
+0.0                      55      82729.00       61.18
+1.0                      35      52501.00       38.82
+Total                    90     135230.00      100.00
+-----------------------------------------------------
+  Table of white
+
+white             Frequency      Wgt Freq     Percent
+-----------------------------------------------------
+1.0                      49      74110.00       54.80
+0.0                      41      61120.00       45.20
+Total                    90     135230.00      100.00
+-----------------------------------------------------
+
+
+                        The SURVEYMEANS Procedure
+
+     Number of Observations Read         90
+     Number of Observations Used         90
+     Sum of Weights                      135230.00
+     Stratum Variable: strata                4 Strata
+     Cluster Variable: cluster             4 Clusters
+
+Variable                N            Mean       Std Error        Lower CL        Upper CL
+-----------------------------------------------------------------------------------------
+age                    90         46.7514          0.0000                                
+-----------------------------------------------------------------------------------------
+

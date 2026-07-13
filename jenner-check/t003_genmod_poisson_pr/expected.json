@@ -1,0 +1,20 @@
+{
+  "_captured_at": "2026-07-13T08:14:20.014309Z",
+  "_captured_run_id": "r_11bc65df34e741098c1c3080fef937d8",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Read 90 rows from DATALINES.",
+    "NOTE: Distribution: POISSON",
+    "NOTE: Link Function: LOG",
+    "NOTE:   Model fitted successfully with 90 observations"
+  ],
+  "log_does_not_contain": [
+    "ERROR:",
+    "[JENNER-ERROR"
+  ],
+  "diagnostics": {
+    "parse_warnings": [],
+    "runtime_warnings": []
+  }
+}
