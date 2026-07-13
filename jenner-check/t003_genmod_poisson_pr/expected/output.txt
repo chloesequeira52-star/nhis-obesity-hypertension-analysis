@@ -1,0 +1,35 @@
+        The GENMOD Procedure        
+         Model Information          
+
+Item                           Value
+----------------------  ------------
+Response Variable       HYPERTENSION
+Distribution                 poisson
+Link Function                    log
+Number of Observations            90
+
+  Analysis of Maximum Likelihood Parameter Estimates  
+
+Parameter  Estimate  Std Error  Chi-Square  Pr > ChiSq
+---------  --------  ---------  ----------  ----------
+Intercept   -1.8647     0.3792     24.1823      <.0001
+OBESE_1      0.6896     0.5582      1.5262      0.2167
+AGE          0.0049     0.0115      0.1844      0.6676
+MALE_1       0.0011     0.3607      0.0000      0.9975
+WHITE_0     -0.4170     0.3635      1.3156      0.2514
+
+Criteria for Assessing Goodness of Fit
+
+Criterion          Value
+--------------  --------
+Deviance         57.9265
+Log Likelihood  -49.9633
+AIC             109.9265
+BIC             122.4256
+
+    GEE Model Information    
+
+Item                    Value
+-------------------  --------
+Subject Effect        CLUSTER
+Working Correlation       ind

@@ -1,0 +1,7 @@
+{
+  "bundle": "t001_survey_descriptive",
+  "source_file": "nhis_hypertension_survey_analysis.sas",
+  "source_blob_sha": "47eccff51a5f8a779e61c3c276395b54d00ce524",
+  "source_commit": "84275a735b6b4591f03848f4cfcc232d066ae322",
+  "notes": "Descriptive step: their NHIS recode DATA step + PROC SURVEYFREQ (weighted prevalence) + PROC SURVEYMEANS (weighted mean age). External adult24.csv import replaced by a 60-row mock sample with the same NHIS columns (HYPEV_A, BMICAT_A, SEX_A, RACEALLP_A, AGEP_A, WTFA_A, PSTRAT, PPSU)."
+}

@@ -1,0 +1,49 @@
+
+                      The SURVEYLOGISTIC Procedure
+
+  Number of Strata                4
+  Number of Clusters              4
+  Number of Observations         90
+  Number of Events               21
+  Number of Non-Events           69
+  Link Function               logit
+  Variance Method            TAYLOR
+
+                Model Fit Statistics
+
+  -2 Log Likelihood         94.1110
+  AIC                      110.1110
+  SC                       130.1095
+
+                  Analysis of Maximum Likelihood Estimates
+
+Parameter                   Estimate       Std Error     t Value    Pr > |t|
+----------------------------------------------------------------------------
+Intercept                  -2.969225        0.000000                  0.0000
+OBESE_0.0                  12.055614        0.000000                  0.0000
+OBESE_1.0                  13.313810        0.000000                  0.0000
+age                         0.005238        0.000000                  0.0000
+MALE_0.0                   -6.987543        0.000000                  0.0000
+MALE_1.0                   -6.918055        0.000000                  0.0000
+WHITE_0.0                  -4.677290        0.000000                  0.0000
+WHITE_1.0                  -3.865691        0.000000                  0.0000
+----------------------------------------------------------------------------
+
+                         Odds Ratio Estimates
+
+Effect                    Odds Ratio
+------------------------------------
+OBESE_0.0                172062.5984
+OBESE_1.0                605500.0427
+age                           1.0053
+MALE_0.0                      0.0009
+MALE_1.0                      0.0010
+WHITE_0.0                     0.0093
+WHITE_1.0                     0.0209
+------------------------------------
+
+                       Association of Predicted Probabilities
+
+  Percent Concordant      66.0
+  Percent Discordant      33.8
+  c Statistic           0.6611

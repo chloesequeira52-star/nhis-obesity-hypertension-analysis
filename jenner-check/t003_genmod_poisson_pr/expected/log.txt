@@ -1,0 +1,26 @@
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA work.proj3_clean
+
+NOTE: Processing inline DATALINES (90 lines)
+
+NOTE: Read 90 rows from DATALINES.
+NOTE: Wrote work.proj3_clean (90 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC GENMOD data=work.proj3_clean
+
+NOTE: PROC GENMOD using Python wrapper (interaction/GEE/Tweedie support).
+NOTE: PROC GENMOD using Python wrapper
+NOTE: 
+NOTE: Response Variable: HYPERTENSION
+NOTE: Distribution: POISSON
+NOTE: Link Function: LOG
+NOTE: Number of Observations: 90
+NOTE:   Model fitted successfully with 90 observations
+NOTE: ODS plot written: genmod_residuals_vs_predicted.spec.json
+NOTE: ODS plot written: genmod_residual_histogram_panel.spec.json
+NOTE: ODS plot written: genmod_residuals_vs_obs_order.spec.json
+NOTE: ODS plot written: genmod_qq_plot.spec.json
+NOTE: PROC GENMOD ODS Graphics generated.

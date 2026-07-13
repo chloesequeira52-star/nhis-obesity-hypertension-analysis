@@ -1,0 +1,7 @@
+{
+  "bundle": "t002_surveylogistic_main",
+  "source_file": "nhis_hypertension_survey_analysis.sas",
+  "source_blob_sha": "47eccff51a5f8a779e61c3c276395b54d00ce524",
+  "source_commit": "84275a735b6b4591f03848f4cfcc232d066ae322",
+  "notes": "Main model: their NHIS recode DATA step + PROC SURVEYLOGISTIC adjusted for age, sex, race with survey design (strata/cluster/weight). External adult24.csv import replaced by the same 60-row NHIS mock sample."
+}
